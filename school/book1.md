@@ -1,10 +1,10 @@
-### A Golden Ticket to Adventure: An Interview with Charlie Bucket
+### The bar with the ticket: An Interview with Charlie Bucket
 
-#### From Poor to Rich: The Journey of a Lifetime
+#### From Poor to Rich: Charlie Bucket His Journey
 
 Charlie Bucket's story is one of hope and inspiration. We talked to Charlie about his amazing journey from being poor to owning Willy Wonka's magical chocolate factory.
 
-#### The Humble Beginnings
+#### How It All Begun
 
 **Q: Charlie, can you tell us about your life before finding the golden ticket?**
 
