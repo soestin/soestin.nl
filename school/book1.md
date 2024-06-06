@@ -35,5 +35,6 @@ Charlie Bucket's story is one of hope and inspiration. We talked to Charlie abou
 **Charlie Bucket**: Never stop dreaming! No matter how tough life gets sometimes. If i stopped dreaming i wouldn't have stood here with you right now.
 
 ***That was this weeks interview, See you next week!***
+
 *Made by Justin*
 *E2ha*
