@@ -1,113 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Justin's personal website"/>
+    <meta property="og:image" content="https://r2.e-z.host/53a164e1-51b6-4088-ae8b-54e0e7c25201/fl16simm.png"/>
+    <meta property="og:description" content="Welcome to my personal space on the web!"/>
     <title>Soestin |👋</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="icon" type="image/x-icon" href="https://r2.e-z.host/53a164e1-51b6-4088-ae8b-54e0e7c25201/bvvcqgdf.ico">
+    <link rel="icon" href="https://r2.e-z.host/53a164e1-51b6-4088-ae8b-54e0e7c25201/bvvcqgdf.ico">
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <script src="https://kit.fontawesome.com/38f0187506.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <div class="loader --7"></div>
-    <div class="container">
-        <section id="introduction">
-            <h2>Hello, I'm Justin! 👋</h2>
-            <p id="typing-text"></p>
-        </section>
-        <section id="discord">
-            <h2>Discord Profile</h2>
-            <div id="discord-status" class="discord-embed">
-                <!-- Discord status will be dynamically loaded here -->
+    <div id="abcdefu">
+        <div id="infobox">
+            <br>
+            <h1 id="name-title">Hi, I'm <span id="name"></span></h1>
+            <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+            <script>
+                var typed = new Typed('#name', {
+                    strings: ['Justin', 'a tech enthusiast', 'a virtualization expert', 'a self-hosting fan', 'a Linux user', 'a Windows user'],
+                    typeSpeed: 96,
+                    loop: true,
+                    fadeOut: true,
+                });
+            </script>
+            <div id="upper">
+                <div class="column" id="left">
+                    <img id="avatar" src="https://r2.e-z.host/53a164e1-51b6-4088-ae8b-54e0e7c25201/fl16simm.png" alt="Avatar" />
+                    <div id="contact">
+                        <a href="https://github.com/yourgithubprofile" class="button"><i class="fa-brands fa-github"></i> GitHub</a>
+                        <a href="https://discord.com/users/769813729599553567" class="button"><i class="fa-brands fa-discord"></i> Discord</a>
+                        <a href="https://linkedin.com/in/yourlinkedinprofile" class="button"><i class="fa-solid fa-book"></i> LinkedIn</a>
+                    </div>
+                </div>
+                <div class="column" id="right">
+                    <a href="https://discord.com/users/769813729599553567" target="_blank">
+                        <img src="https://lanyard.cnrad.dev/api/769813729599553567?bg=1a3132" alt="Discord Status" />
+                    </a>
+                </div>
             </div>
-        </section>
-        <section id="additional-text">
-            <p>Welcome to my personal site where I share my projects and interests. Feel free to explore and reach out if you have any questions!</p>
-        </section>
-        <footer>
-            <p>Copyright © 2024 Soestin. All rights reserved.</p>
-        </footer>
+            <br>
+            <h3 id="about-me">I'm a tech enthusiast who loves virtualization and self-hosting. <a id="nohello" href="https://nohello.net/en/" target="_blank">Feel free to DM me on Discord</a>, but expect some tech talk :)</h3>
+            <br>
+        </div>
     </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(function() {
-                const loader = document.querySelector('.loader');
-                const content = document.querySelector('.container');
-
-                loader.style.opacity = '0';
-                loader.style.visibility = 'hidden';
-
-                setTimeout(function() {
-                    content.style.opacity = '1';
-                    content.style.visibility = 'visible';
-                }, 500);
-        
-            }, 2000);
-
-            // Typing effect
-            const texts = ["I love coding.", "Welcome to my site.", "Enjoy your stay!"];
-            let index = 0;
-            let charIndex = 0;
-            let currentText = '';
-            let isDeleting = false;
-
-            function type() {
-                if (index < texts.length) {
-                    if (!isDeleting && charIndex <= texts[index].length) {
-                        currentText = texts[index].substring(0, charIndex++);
-                        document.getElementById("typing-text").innerHTML = currentText;
-                    }
-
-                    if (isDeleting && charIndex <= texts[index].length) {
-                        currentText = texts[index].substring(0, charIndex--);
-                        document.getElementById("typing-text").innerHTML = currentText;
-                    }
-
-                    if (charIndex == texts[index].length) {
-                        isDeleting = true;
-                    }
-
-                    if (isDeleting && charIndex === 0) {
-                        isDeleting = false;
-                        index++;
-                        if (index === texts.length) {
-                            index = 0;
-                        }
-                    }
-                }
-                setTimeout(type, isDeleting ? 50 : 100);
-            }
-            type();
-
-            // Fetch Discord presence using Lanyard API
-            async function fetchDiscordPresence() {
-                const response = await fetch('https://api.lanyard.rest/v1/users/769813729599553567');
-                const data = await response.json();
-                const discordStatus = document.getElementById('discord-status');
-                if (data.success) {
-                    const { discord_user, activities, listening_to_spotify } = data.data;
-                    discordStatus.innerHTML = `
-                        <img src="https://cdn.discordapp.com/avatars/${discord_user.id}/${discord_user.avatar}.png" alt="Profile Picture" class="discord-avatar">
-                        <p><strong>${discord_user.username}#${discord_user.discriminator}</strong></p>
-                        <p><strong>Status:</strong> ${activities.length > 0 ? activities[0].name : 'No current activity'}</p>
-                        ${listening_to_spotify ? `<p><strong>Listening to:</strong> ${data.data.spotify.song}</p>` : ''}
-                        <div class="discord-badges">
-                            <!-- Example badges -->
-                            <span class="badge">Nitro</span>
-                            <span class="badge">HypeSquad</span>
-                        </div>
-                        <div class="social-links">
-                            <a href="https://twitter.com/yourprofile" target="_blank"><img src="twitter-icon.png" alt="Twitter"></a>
-                            <a href="https://github.com/yourprofile" target="_blank"><img src="github-icon.png" alt="GitHub"></a>
-                            <a href="mailto:justin@soestin.nl"><img src="email-icon.png" alt="Email"></a>
-                        </div>
-                    `;
-                } else {
-                    discordStatus.innerHTML = `<p>Unable to fetch Discord status.</p>`;
-                }
-            }
-
-            fetchDiscordPresence();
-        });
-    </script>
 </body>
 </html>
