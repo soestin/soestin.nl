@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soestin |👋</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/x-icon" href="https://r2.e-z.host/53a164e1-51b6-4088-ae8b-54e0e7c25201/bvvcqgdf.ico">
+</head>
+<body>
+    <div class="loader --7"></div>
+    <div class="container">
+        <section id="introduction">
+            <h2>Hello, I'm Justin! 👋</h2>
+            <p id="typing-text"></p>
+        </section>
+        <section id="discord">
+            <h2>Discord Profile</h2>
+            <div id="discord-status" class="discord-embed">
+                <!-- Discord status will be dynamically loaded here -->
+            </div>
+        </section>
+        <section id="additional-text">
+            <p>Welcome to my personal site where I share my projects and interests. Feel free to explore and reach out if you have any questions!</p>
+        </section>
+        <footer>
+            <p>Copyright © 2024 Soestin. All rights reserved.</p>
+        </footer>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                const loader = document.querySelector('.loader');
+                const content = document.querySelector('.container');
+
+                loader.style.opacity = '0';
+                loader.style.visibility = 'hidden';
+
+                setTimeout(function() {
+                    content.style.opacity = '1';
+                    content.style.visibility = 'visible';
+                }, 500);
+        
+            }, 2000);
+
+            // Typing effect
+            const texts = ["I love coding.", "Welcome to my site.", "Enjoy your stay!"];
+            let index = 0;
+            let charIndex = 0;
+            let currentText = '';
+            let isDeleting = false;
+
+            function type() {
+                if (index < texts.length) {
+                    if (!isDeleting && charIndex <= texts[index].length) {
+                        currentText = texts[index].substring(0, charIndex++);
+                        document.getElementById("typing-text").innerHTML = currentText;
+                    }
+
+                    if (isDeleting && charIndex <= texts[index].length) {
+                        currentText = texts[index].substring(0, charIndex--);
+                        document.getElementById("typing-text").innerHTML = currentText;
+                    }
+
+                    if (charIndex == texts[index].length) {
+                        isDeleting = true;
+                    }
+
+                    if (isDeleting && charIndex === 0) {
+                        isDeleting = false;
+                        index++;
+                        if (index === texts.length) {
+                            index = 0;
+                        }
+                    }
+                }
+                setTimeout(type, isDeleting ? 50 : 100);
+            }
+            type();
+
+            // Fetch Discord presence using Lanyard API
+            async function fetchDiscordPresence() {
+                const response = await fetch('https://api.lanyard.rest/v1/users/769813729599553567');
+                const data = await response.json();
+                const discordStatus = document.getElementById('discord-status');
+                if (data.success) {
+                    const { discord_user, activities, listening_to_spotify } = data.data;
+                    discordStatus.innerHTML = `
+                        <img src="https://cdn.discordapp.com/avatars/${discord_user.id}/${discord_user.avatar}.png" alt="Profile Picture" class="discord-avatar">
+                        <p><strong>${discord_user.username}#${discord_user.discriminator}</strong></p>
+                        <p><strong>Status:</strong> ${activities.length > 0 ? activities[0].name : 'No current activity'}</p>
+                        ${listening_to_spotify ? `<p><strong>Listening to:</strong> ${data.data.spotify.song}</p>` : ''}
+                        <div class="discord-badges">
+                            <!-- Example badges -->
+                            <span class="badge">Nitro</span>
+                            <span class="badge">HypeSquad</span>
+                        </div>
+                        <div class="social-links">
+                            <a href="https://twitter.com/yourprofile" target="_blank"><img src="twitter-icon.png" alt="Twitter"></a>
+                            <a href="https://github.com/yourprofile" target="_blank"><img src="github-icon.png" alt="GitHub"></a>
+                            <a href="mailto:justin@soestin.nl"><img src="email-icon.png" alt="Email"></a>
+                        </div>
+                    `;
+                } else {
+                    discordStatus.innerHTML = `<p>Unable to fetch Discord status.</p>`;
+                }
+            }
+
+            fetchDiscordPresence();
+        });
+    </script>
+</body>
+</html>
