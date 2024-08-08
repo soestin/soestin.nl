@@ -17,8 +17,8 @@
     text-align: center;
 }
 
-body {
-    background-color: #004d4d; /* Deep teal background */
+body {  
+    background-color: #2F4F4F; /* Dark slate gray background */
 }
 
 #abcdefu {
@@ -69,11 +69,11 @@ body {
     transform: scale(1.05);
 }
 
-#nohello {
+#dcred {
     color: #f16100;
 }
 
-#nohello:hover {
+#dcred:hover {
     opacity: 0.7 !important;
 }
 
@@ -122,4 +122,80 @@ body {
 
 #name:hover {
     opacity: 0.7;
+}
+
+.bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #221F2E;
+    z-index: -1; /* Zorg ervoor dat de stippen achter de inhoud blijven */
+}
+
+.dotWrapper {
+    position: absolute;
+}
+
+.dot {
+    width: 4px;
+    height: 4px;
+    background: #FEA039;
+    border-radius: 50%;
+    position: absolute;
+    animation: flying 40s ease-in-out infinite alternate, rotating 20s ease-in-out infinite;
+}
+
+@keyframes rotating {
+    0% {
+        opacity: 0;
+        transform: rotate(0deg);
+    }
+    25%, 75% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes flying {
+    0% {
+        transform: translate(0, 0);
+    }
+    10% {
+        transform: translate(20px, 50px);
+    }
+    20% {
+        transform: translate(-30px, 10px);
+    }
+    30% {
+        transform: translate(10px, 60px);
+    }
+    40% {
+        transform: translate(50px, 0px);
+    }
+    50% {
+        transform: translate(-10px, -40px);
+    }
+    60% {
+        transform: translate(-40px, 20px);
+    }
+    70% {
+        transform: translate(30px, -30px);
+    }
+    80% {
+        transform: translate(0px, -60px);
+    }
+    90% {
+        transform: translate(40px, 10px);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
 }
