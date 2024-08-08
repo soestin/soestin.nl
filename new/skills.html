@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ma Skills |👨‍💻</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/x-icon" href="https://r2.e-z.host/53a164e1-51b6-4088-ae8b-54e0e7c25201/bvvcqgdf.ico">
+</head>
+<body>
+    <div class="bg">
+        <script>
+            for (let i = 1; i <= 75; i++) {
+                let topPosition = Math.random() * 100;
+                let leftPosition = Math.random() * 100;
+                document.write(`<div class="dotWrapper" style="top: ${topPosition}%; left: ${leftPosition}%;"><div class="dot"></div></div>`);
+            }
+        </script>
+    </div>
+    <div class="loader --7"></div>
+    <div class="container">
+        <nav>
+            <a href="index.html">Home</a> | 
+            <a href="skills.html">Skills</a>
+        </nav>
+        <section id="skills-page">
+            <h2>My Tech Skills and Interests 🧰</h2>
+            <div>
+                <p>Tech Skills:</p>
+                <div><img src="https://img.shields.io/badge/HTML-e34c26?style=for-the-badge&logo=html5&logoColor=white" alt="HTML Badge"/></div>
+                <div><img src="https://img.shields.io/badge/CSS-1572B6?style=for-the-badge&logo=css3&logoColor=white" alt="CSS Badge"/></div>
+                <div><img src="https://img.shields.io/badge/Python-14354C?style=for-the-badge&logo=python&logoColor=white" alt="Python Badge"/></div>
+            </div>
+            <div>
+                <p>Hobbies and Interests:</p>
+                <div><img src="https://img.shields.io/badge/Virtualization-0078D6?style=for-the-badge&logo=vmware&logoColor=white" alt="Virtualization Badge"/></div>
+                <div><img src="https://img.shields.io/badge/Self--Hosting-FF6A00?style=for-the-badge&logo=docker&logoColor=white" alt="Self-Hosting Badge"/></div>
+                <div><img src="https://img.shields.io/badge/Tech%20Gadgets-25A162?style=for-the-badge&logo=raspberry-pi&logoColor=white" alt="Tech Gadgets Badge"/></div>
+                <div><img src="https://img.shields.io/badge/Home%20Lab-551A8B?style=for-the-badge&logo=linux&logoColor=white" alt="Home Lab Badge"/></div>
+            </div>
+        </section>
+        <footer>
+            <p>Copyright © 2024 Soestin. All rights reserved.</p>
+        </footer>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                const loader = document.querySelector('.loader');
+                const content = document.querySelector('.container');
+
+                loader.style.opacity = '0';
+                loader.style.visibility = 'hidden';
+
+                setTimeout(function() {
+                    content.style.opacity = '1';
+                    content.style.visibility = 'visible';
+                }, 500);
+        
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
