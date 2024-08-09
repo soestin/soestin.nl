@@ -1,74 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Soestin |👋</title>
-        <link rel="stylesheet" href="styles.css">
-        <link rel="icon" type="image/x-icon" href="https://r2.e-z.host/53a164e1-51b6-4088-ae8b-54e0e7c25201/bvvcqgdf.ico">
+    <meta property="og:title" content="Justin's personal website"/>
+    <meta property="og:image" content="/static/banner.png"/>
+    <meta property="og:description" content="Welcome to my personal space on the web!"/>
+    <title>Soestin |👋</title>
+    <link rel="icon" href="/static/logo.ico">
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <script src="https://kit.fontawesome.com/38f0187506.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <div class="loader --7"></div>
-    <div class="container">
-        <section id="introduction">
-            <h2>Hello, I'm Justin! 👋</h2>
-            <p>Hello, I'm Justin! 👋</p>
-        </section>
-        <a href="https://e-z.bio/soestin">
-            <img src="https://r2.e-z.host/53a164e1-51b6-4088-ae8b-54e0e7c25201/fl16simm.png" alt="Justin's Banner" class="banner-image">
-        </a>
-        <section id="skills">
-            <h2>Skills and Interests 🧰</h2>
-            <div>
-                <p>Tech Skills:</p>
-                <div><img src="https://img.shields.io/badge/HTML-e34c26?style=for-the-badge&logo=html5&logoColor=white" alt="HTML Badge"/></div>
-                <div><img src="https://img.shields.io/badge/CSS-1572B6?style=for-the-badge&logo=css3&logoColor=white" alt="CSS Badge"/></div>
-                <div><img src="https://img.shields.io/badge/Python-14354C?style=for-the-badge&logo=python&logoColor=white" alt="Python Badge"/></div>
-            </div>
-            <div>
-                <p>Hobbies and Interests:</p>
-                <div><img src="https://img.shields.io/badge/Virtualization-0078D6?style=for-the-badge&logo=vmware&logoColor=white" alt="Virtualization Badge"/></div>
-                <div><img src="https://img.shields.io/badge/Self--Hosting-FF6A00?style=for-the-badge&logo=docker&logoColor=white" alt="Self-Hosting Badge"/></div>
-                <div><img src="https://img.shields.io/badge/Tech%20Gadgets-25A162?style=for-the-badge&logo=raspberry-pi&logoColor=white" alt="Tech Gadgets Badge"/></div>
-                <div><img src="https://img.shields.io/badge/Home%20Lab-551A8B?style=for-the-badge&logo=linux&logoColor=white" alt="Home Lab Badge"/></div>
-            </div>
-        </section>
-        <section id="contact">
-            <h2>Wanna Talk To Me?📫</h2>
-            <p>Feel free to reach out to me through any of the following platforms:</p>
-            <div>
-                <a href="https://discordapp.com/users/769813729599553567" target="_blank">
-                    <img src="https://img.shields.io/badge/Discord-7289DA?style=for-the-badge&logo=discord&logoColor=white" alt="Discord Badge"/>
-                </a>
-            </div>
-            <div>
-                <a href="mailto:justin@soestin.nl">
-                    <img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email Badge"/>
-                </a>
-            </div>
-        </section>
-        <footer>
-            <p>Copyright © 2024 Soestin. All rights reserved.</p>
-        </footer>
-    </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(function() {
-                const loader = document.querySelector('.loader');
-                const content = document.querySelector('.container');
-        
-
-                loader.style.opacity = '0';
-                loader.style.visibility = 'hidden';
-        
-
-                setTimeout(function() {
-                    content.style.opacity = '1';
-                    content.style.visibility = 'visible';
-                }, 500);
-        
-            }, 2000);
-        });
+    <div class="bg">
+        <script>
+            for (let i = 1; i <= 75; i++) {
+                let topPosition = Math.random() * 100;
+                let leftPosition = Math.random() * 100;
+                document.write(`<div class="dotWrapper" style="top: ${topPosition}%; left: ${leftPosition}%;"><div class="dot"></div></div>`);
+            }
         </script>
+    </div>
+    <div id="abcdefu">
+        <div id="infobox">
+            <br>
+            <h1 id="name-title">Hi, I'm <span id="name"></span></h1>
+            <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+            <script>
+                var typed = new Typed('#name', {
+                    strings: ['Justin', 'a tech enthusiast', 'a virtualization expert', 'a self-hosting fan', 'a Linux user', 'a Windows user'],
+                    typeSpeed: 96,
+                    loop: true,
+                    fadeOut: true,
+                });
+            </script>
+            <div id="upper">
+                <div class="column" id="left">
+                    <img id="avatar" src="/static/banner.png" alt="Avatar" />
+                    <div id="contact">
+                        <a href="https://github.com/soestin" class="button"><i class="fa-brands fa-github"></i> GitHub</a>
+                        <a href="https://discord.com/users/769813729599553567" class="button"><i class="fa-brands fa-discord"></i> Discord</a>
+                        <a href="skills.html" class="button"><i class="fa-solid fa-book"></i> Ma Skills!</a>
+                    </div>
+                </div>
+                <div class="column" id="right">
+                    <a href="https://discord.com/users/769813729599553567" target="_blank">
+                        <img src="https://lanyard.cnrad.dev/api/769813729599553567?bg=1a3132" alt="Discord Status" />
+                    </a>
+                </div>
+            </div>
+            <br>
+            <h3 id="about-me">I'm a nerd that loves selfhosting useless stuff and coding funny and stupid programs. <a id="dcred" href="https://discordapp.com/users/769813729599553567" target="_blank">Feel free to DM me on Discord</a> if you wanna talk :-)</h3>
+            <br>
+        </div>
+    </div>
 </body>
 </html>
