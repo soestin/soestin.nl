@@ -3,10 +3,9 @@
 import { motion, useScroll, useTransform } from "framer-motion"
 import { ArrowRight, Github, Mail, Bug, Book, Globe, Server } from 'lucide-react'
 import Link from "next/link"
-import { useRef, useState, useEffect } from "react"
+import { useRef } from "react"
 import { TechStackItem } from "./TechStackItem"
 import Image from 'next/image'
-import { TurnstileGateway } from './TurnstileGateway'
 
 interface TechItem {
   name: string;
@@ -107,25 +106,6 @@ export function BlockPage() {
         damping: 10
       }
     }
-  }
-
-  const [isVerified, setIsVerified] = useState(false)
-  
-  // Check if user was previously verified
-  useEffect(() => {
-    const verified = sessionStorage.getItem('turnstile-verified')
-    if (verified === 'true') {
-      setIsVerified(true)
-    }
-  }, [])
-
-  const handleVerification = () => {
-    setIsVerified(true)
-    sessionStorage.setItem('turnstile-verified', 'true')
-  }
-
-  if (!isVerified) {
-    return <TurnstileGateway onVerified={handleVerification} />
   }
 
   return (
