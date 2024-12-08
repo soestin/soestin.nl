@@ -11,26 +11,49 @@ interface TechItem {
   name: string;
   icon: string;
   quote: string;
-  category: 'language' | 'framework' | 'tool' | 'cloud';
+  category: 'frontend' | 'backend' | 'devops';
 }
 
 const techStack: TechItem[] = [
-  { name: 'TypeScript', icon: 'SiTypescript', quote: "JavaScript that scales.", category: 'language' },
-  { name: 'JavaScript', icon: 'SiJavascript', quote: "The language of the web.", category: 'language' },
-  { name: 'Python', icon: 'SiPython', quote: "Simple is better than complex.", category: 'language' },
-  
-  { name: 'React', icon: 'SiReact', quote: "Build once, run everywhere.", category: 'framework' },
-  { name: 'Next.js', icon: 'SiNextdotjs', quote: "The React Framework for Production.", category: 'framework' },
-  { name: 'Flask', icon: 'SiFlask', quote: "Web development, one drop at a time.", category: 'framework' },
-  { name: 'Node.js', icon: 'SiNodedotjs', quote: "JavaScript everywhere.", category: 'framework' },
-  
-  { name: 'Git', icon: 'SiGit', quote: "Version control that doesn't drive you crazy.", category: 'tool' },
-  { name: 'Docker', icon: 'SiDocker', quote: "Build, Ship, Run. Anywhere.", category: 'tool' },
-  { name: 'Tailwind', icon: 'SiTailwindcss', quote: "Rapidly build modern websites.", category: 'tool' },
-  
-  { name: 'Cloudflare', icon: 'SiCloudflare', quote: "The Web Performance & Security Company.", category: 'cloud' },
-  { name: 'Vercel', icon: 'SiVercel', quote: "Develop. Preview. Ship.", category: 'cloud' },
+  // Frontend
+  { name: 'TypeScript', icon: 'SiTypescript', quote: "JavaScript that scales.", category: 'frontend' },
+  { name: 'JavaScript', icon: 'SiJavascript', quote: "The language of the web.", category: 'frontend' },
+  { name: 'React', icon: 'SiReact', quote: "Build once, run everywhere.", category: 'frontend' },
+  { name: 'Next.js', icon: 'SiNextdotjs', quote: "The React Framework for Production.", category: 'frontend' },
+  { name: 'Tailwind', icon: 'SiTailwindcss', quote: "Rapidly build modern websites.", category: 'frontend' },
+
+  // Backend
+  { name: 'Python', icon: 'SiPython', quote: "Simple is better than complex.", category: 'backend' },
+  { name: 'Flask', icon: 'SiFlask', quote: "Web development, one drop at a time.", category: 'backend' },
+  { name: 'Node.js', icon: 'SiNodedotjs', quote: "JavaScript everywhere.", category: 'backend' },
+
+  // DevOps
+  { name: 'Git', icon: 'SiGit', quote: "Version control that doesn't drive you crazy.", category: 'devops' },
+  { name: 'GitHub', icon: 'SiGithub', quote: "Where the world builds software.", category: 'devops' },
+  { name: 'Docker', icon: 'SiDocker', quote: "Build, Ship, Run. Anywhere.", category: 'devops' },
+  { name: 'Cloudflare', icon: 'SiCloudflare', quote: "The Web Performance & Security Company.", category: 'devops' },
+  { name: 'Vercel', icon: 'SiVercel', quote: "Develop. Preview. Ship.", category: 'devops' },
+  { name: 'Hetzner', icon: 'SiHetzner', quote: "High-performance hosting. Unbeatable prices.", category: 'devops' },
+  { name: 'Linux', icon: 'SiLinux', quote: "The open-source operating system.", category: 'devops' },
+  { name: 'GCP', icon: 'SiGooglecloud', quote: "Innovate faster with Google’s cloud infrastructure.", category: 'devops' },
 ];
+
+export function ScrollIndicator() {
+  const { scrollY } = useScroll(); // Detecteer scrollpositie
+  const opacity = useTransform(scrollY, [0, 100], [1, 0]); // Fade-out tussen 0px en 100px scroll
+
+  return (
+    <motion.div
+      className="fixed bottom-10 left-1/2 transform -translate-x-1/2"
+      style={{ opacity }} // Dynamische fade-out bij scrollen
+      initial={{ y: 0 }}
+      animate={{ y: [0, -10, 0] }} // Op-en-neer beweging
+      transition={{ duration: 1.5, repeat: Infinity }} // Herhaal de animatie
+    >
+      <ArrowRight className="w-6 h-6 text-gray-300 rotate-90" />
+    </motion.div>
+  );
+}
 
 export function BlockPage() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -49,7 +72,7 @@ export function BlockPage() {
       description: "My first CDN built with Cloudflare Workers 🎉",
       tags: [
         { name: "JavaScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
-        { name: "Cloudflare Workers", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cloudflare/cloudflare-original.svg" }
+        { name: "Cloudflare Workers", icon: "/cloudflare-workers.svg" }
       ],
       links: {
         github: "https://github.com/soestin/stuff-cdn",
@@ -65,20 +88,22 @@ export function BlockPage() {
         { name: "Tailwind CSS", icon: "https://raw.githubusercontent.com/devicons/devicon/refs/tags/v2.16.0/icons/tailwindcss/tailwindcss-original.svg" }
       ],
       links: {
-        github: "https://github.com/soestin/soestinnl",
+        github: "https://github.com/soestin/soestin.nl",
         live: "https://soestin.nl"
       }
     },
     {
-      title: "Coming Soon....",
-      description: "Coming Soon....",
-      tags: [
-        { name: "React", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
-        { name: "TypeScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" }
+      "title": "Obsidian Web Sync",
+      "description": "A handy tool to publish your obsidian notes via R2",
+      "tags": [
+        { "name": "TypeScript", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
+        { "name": "Cloudflare R2", "icon": "/cloudflare-r2.svg" },
+        { "name": "Cloudflare Workers", "icon": "/cloudflare-workers.svg" }
+
       ],
-      links: {
-        github: "#",
-        live: "#"
+      "links": {
+        "github": "https://github.com/soestin/Obsidian-Web-Sync-R2",
+        "live": "#"
       }
     }
   ]
@@ -149,6 +174,7 @@ export function BlockPage() {
       </motion.div>
 
       {/* Hero Section */}
+      
       <div className="relative z-10">
         <div className="relative h-screen flex items-center justify-center overflow-hidden px-4 sm:px-6">
           <motion.div
@@ -192,6 +218,8 @@ export function BlockPage() {
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </motion.div>
+                {/* Scroll Indicator */}
+    <ScrollIndicator />
           </motion.div>
         </div>
       </div>
@@ -327,10 +355,10 @@ export function BlockPage() {
           
           {/* Languages */}
           <div className="mb-12">
-            <h3 className="text-xl font-semibold mb-4 text-gray-300">Languages</h3>
+            <h3 className="text-xl font-semibold mb-4 text-gray-300">Frondend</h3>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
               {techStack
-                .filter(tech => tech.category === 'language')
+                .filter(tech => tech.category === 'frontend')
                 .map(tech => (
                   <TechStackItem key={tech.name} tech={tech} />
                 ))}
@@ -339,22 +367,10 @@ export function BlockPage() {
 
           {/* Frameworks */}
           <div className="mb-12">
-            <h3 className="text-xl font-semibold mb-4 text-gray-300">Frameworks</h3>
+            <h3 className="text-xl font-semibold mb-4 text-gray-300">Backend</h3>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
               {techStack
-                .filter(tech => tech.category === 'framework')
-                .map(tech => (
-                  <TechStackItem key={tech.name} tech={tech} />
-                ))}
-            </div>
-          </div>
-
-          {/* Tools */}
-          <div className="mb-12">
-            <h3 className="text-xl font-semibold mb-4 text-gray-300">Tools</h3>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
-              {techStack
-                .filter(tech => tech.category === 'tool')
+                .filter(tech => tech.category === 'backend')
                 .map(tech => (
                   <TechStackItem key={tech.name} tech={tech} />
                 ))}
@@ -363,16 +379,17 @@ export function BlockPage() {
 
           {/* Cloud */}
           <div>
-            <h3 className="text-xl font-semibold mb-4 text-gray-300">Cloud</h3>
+            <h3 className="text-xl font-semibold mb-4 text-gray-300">Cloud and DevOps</h3>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
               {techStack
-                .filter(tech => tech.category === 'cloud')
+                .filter(tech => tech.category === 'devops')
                 .map(tech => (
                   <TechStackItem key={tech.name} tech={tech} />
                 ))}
             </div>
           </div>
         </div>
+        
       </motion.section>
 
       {/* Contact Section */}
