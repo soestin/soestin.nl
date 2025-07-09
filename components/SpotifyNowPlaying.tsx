@@ -1,10 +1,9 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { Card } from "@/components/ui/card"
-import { Progress } from "@/components/ui/progress"
 import { Music, PauseCircle } from "lucide-react"
 
 // Define TypeScript types for the Spotify data
@@ -34,12 +33,105 @@ interface SpotifyData {
   progress_percent: number
 }
 
+// Liquid progress bar component
+function LiquidProgress({ value, isPlaying }: { value: number; isPlaying: boolean }) {
+  return (
+    <div className="relative h-2 bg-white/20 rounded-full overflow-hidden">
+      <div 
+        className="absolute inset-y-0 left-0 rounded-full"
+        style={{ 
+          width: `${Math.max(0, Math.min(100, value))}%`,
+          background: isPlaying 
+            ? 'linear-gradient(90deg, #f16100, #ff8c42, #f16100)' 
+            : 'rgba(255, 255, 255, 0.5)',
+          backgroundSize: '200% 100%',
+          animation: isPlaying ? 'liquidFlow 3s ease-in-out infinite' : 'none',
+          transition: 'width 0.1s linear'
+        }}
+      />
+      <style jsx>{`
+        @keyframes liquidFlow {
+          0%, 100% { background-position: 0% 0%; }
+          50% { background-position: 100% 0%; }
+        }
+      `}</style>
+    </div>
+  )
+}
+
 const SPOTIFY_API_URL = `/api/spotify`
 
 export function SpotifyNowPlaying() {
   const [data, setData] = useState<SpotifyData | null>(null)
   const [error, setError] = useState<string | null>(null)
   const [isLoading, setIsLoading] = useState(true)
+  const [currentProgress, setCurrentProgress] = useState(0)
+  const lastUpdateTime = useRef<number>(Date.now())
+  const animationFrameId = useRef<number | undefined>(undefined)
+
+  // Smooth progress interpolation
+  useEffect(() => {
+    if (!data?.is_playing || !data?.track?.duration_ms) {
+      // Stop animation when not playing
+      if (animationFrameId.current) {
+        cancelAnimationFrame(animationFrameId.current)
+        animationFrameId.current = undefined
+      }
+      return
+    }
+
+    const animate = () => {
+      const now = Date.now()
+      const timeDelta = now - lastUpdateTime.current
+      
+      if (data.is_playing && timeDelta > 0) {
+        // Calculate expected progress advancement per frame
+        const progressPerMs = 100 / data.track.duration_ms
+        const expectedProgressDelta = timeDelta * progressPerMs
+        
+        setCurrentProgress(prev => {
+          const newProgress = prev + expectedProgressDelta
+          return Math.min(newProgress, 100) // Don't exceed 100%
+        })
+      }
+      
+      lastUpdateTime.current = now
+      animationFrameId.current = requestAnimationFrame(animate)
+    }
+
+    // Start animation if not already running
+    if (!animationFrameId.current) {
+      lastUpdateTime.current = Date.now()
+      animationFrameId.current = requestAnimationFrame(animate)
+    }
+
+    return () => {
+      if (animationFrameId.current) {
+        cancelAnimationFrame(animationFrameId.current)
+        animationFrameId.current = undefined
+      }
+    }
+  }, [data?.is_playing, data?.track?.duration_ms])
+
+  // Sync with server data when it arrives (smooth correction)
+  useEffect(() => {
+    if (data?.progress_percent !== undefined) {
+      const serverProgress = data.progress_percent
+      
+      // If we're very close to server progress, sync exactly
+      if (Math.abs(serverProgress - currentProgress) < 2) {
+        setCurrentProgress(serverProgress)
+      } else {
+        // If there's a bigger difference, smoothly correct over time
+        const correctionFactor = 0.3
+        setCurrentProgress(prev => 
+          prev + (serverProgress - prev) * correctionFactor
+        )
+      }
+      
+      lastUpdateTime.current = Date.now()
+    }
+  }, [data?.progress_percent, currentProgress])
 
   useEffect(() => {
     const fetchData = async () => {
@@ -108,7 +200,7 @@ export function SpotifyNowPlaying() {
     )
   }
 
-  const { track, progress_percent } = data
+  const { track } = data
   const imageUrl = track.album.images[0]?.url
 
   return (
@@ -141,16 +233,11 @@ export function SpotifyNowPlaying() {
 
         {/* Track Info */}
         <div className="flex-1 min-w-0">
-          <div className="flex items-center space-x-2 mb-1">
-            <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-            <span className="text-xs text-green-400 font-medium">Now playing</span>
-          </div>
-          
           <Link
             href={track.spotify_url}
             target="_blank"
             rel="noopener noreferrer"
-            className="block hover:text-green-400 transition-colors"
+            className="block hover:text-orange-400 transition-colors"
           >
             <h3 className="font-bold truncate text-lg" title={track.name}>
               {track.name}
@@ -160,12 +247,9 @@ export function SpotifyNowPlaying() {
             </p>
           </Link>
           
-          {/* Progress Bar */}
+          {/* Liquid Progress Bar */}
           <div className="mt-3 w-full">
-            <Progress 
-              value={progress_percent || 0} 
-              className="h-2 bg-white/20 [&>div]:bg-white" 
-            />
+            <LiquidProgress value={currentProgress} isPlaying={data.is_playing} />
           </div>
         </div>
       </div>

@@ -10,6 +10,43 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+  
+  /* Enhanced glow effect for the name */
+  .name-glow {
+    text-shadow: 
+      0 0 10px rgba(241, 97, 0, 0.8),
+      0 0 20px rgba(241, 97, 0, 0.6),
+      0 0 30px rgba(241, 97, 0, 0.4),
+      0 0 40px rgba(241, 97, 0, 0.2);
+    animation: gentle-glow 3s ease-in-out infinite alternate;
+    transition: all 0.3s ease;
+  }
+  
+  .name-glow:hover {
+    text-shadow: 
+      0 0 15px rgba(241, 97, 0, 1),
+      0 0 30px rgba(241, 97, 0, 0.8),
+      0 0 45px rgba(241, 97, 0, 0.6),
+      0 0 60px rgba(241, 97, 0, 0.4);
+    animation-duration: 1.5s;
+  }
+  
+  @keyframes gentle-glow {
+    from {
+      text-shadow: 
+        0 0 10px rgba(241, 97, 0, 0.8),
+        0 0 20px rgba(241, 97, 0, 0.6),
+        0 0 30px rgba(241, 97, 0, 0.4),
+        0 0 40px rgba(241, 97, 0, 0.2);
+    }
+    to {
+      text-shadow: 
+        0 0 15px rgba(241, 97, 0, 1),
+        0 0 25px rgba(241, 97, 0, 0.8),
+        0 0 35px rgba(241, 97, 0, 0.6),
+        0 0 45px rgba(241, 97, 0, 0.3);
+    }
+  }
 }
 
 
