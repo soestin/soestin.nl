@@ -1,6 +1,22 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Configure external images
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'i.scdn.co',
+        pathname: '/image/**',
+      },
+      {
+        protocol: 'https',
+        hostname: '*.scdn.co',
+        pathname: '/image/**',
+      },
+    ],
+  },
+  
   // Enable webpack optimization
   webpack: (config, { isServer }) => {
     // Optimize for smaller bundles

@@ -1,8 +1,10 @@
 "use client"
 
+import { useState, useEffect } from "react"
 import { ArrowRight, Github, Mail, Bug, Book, Globe, Server } from 'lucide-react'
 import Link from "next/link"
 import { TechStackItem } from "./TechStackItem"
+import { SpotifyNowPlaying } from "./SpotifyNowPlaying"
 import Image from 'next/image'
 
 interface TechItem {
@@ -37,6 +39,19 @@ const techStack: TechItem[] = [
 ];
 
 export function LightPage() {
+  const [showScrollIndicator, setShowScrollIndicator] = useState(true)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY
+      // Hide the arrow when user scrolls down more than 100px
+      setShowScrollIndicator(scrollY < 100)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   const projects = [
     {
       title: "stuff-cdn",
@@ -119,9 +134,11 @@ export function LightPage() {
             </div>
             
             {/* Simple Scroll Indicator */}
-            <div className="fixed bottom-10 left-1/2 transform -translate-x-1/2">
-              <ArrowRight className="w-6 h-6 text-gray-300 rotate-90" />
-            </div>
+            {showScrollIndicator && (
+              <div className="fixed bottom-10 left-1/2 transform -translate-x-1/2 transition-opacity duration-300">
+                <ArrowRight className="w-6 h-6 text-gray-300 rotate-90" />
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -130,6 +147,12 @@ export function LightPage() {
       <section className="py-12 sm:py-20 px-4 sm:px-6 relative z-10">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8">About me</h2>
+          
+          {/* Spotify Now Playing */}
+          <div className="mb-8">
+            <SpotifyNowPlaying />
+          </div>
+          
           <div className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
             <div className="bg-white/5 p-6 rounded-lg border border-white/10 hover:bg-white/10 transition-colors">
               <Bug className="w-8 h-8 mb-4 text-gray-300" />
