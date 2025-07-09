@@ -115,8 +115,7 @@ export function BlockPage() {
       opacity: 1, 
       y: 0,
       transition: {
-        duration: 0.6,
-        ease: "easeOut"
+        duration: 0.6
       }
     }
   }
@@ -126,7 +125,7 @@ export function BlockPage() {
     hover: {
       scale: 1.03,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         stiffness: 400,
         damping: 10
       }
