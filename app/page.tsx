@@ -1,5 +1,5 @@
-import { BlockPage } from "@/components/page"
+import { LightPage } from "@/components/LightPage"
 
 export default function Page() {
-  return <BlockPage />
+  return <LightPage />
 }
