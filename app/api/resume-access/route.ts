@@ -12,7 +12,7 @@ const getResumeContent = () => {
       address: "Leemringweg 22, 8317RE Kraggenburg",
       driversLicense: "Geen"
     },
-    about: "Systeembeheerder en IT-ondernemer gespecialiseerd in netwerkbeheer, serverbeheer en IT-oplossingen voor kleine en middelgrote bedrijven. Momenteel studerend ICT System Engineer op MBO 4 niveau.",
+    about: "Al sinds kinds af aan ben ik geïnteresseerd in alles rondom IT. Het begon gewoon simpel met het uit elkaar halen van apparaten en kijken hoe ze werkten. Langzamerhand ben ik het IT-gedeelte heel leuk gaan vinden en ben ik mij ook vooral op dat gaan focussen. Ik heb daarom al op jonge leeftijd veel kennis en passie over en voor alles rondom systeembeheer.",
     skills: {
       systemAdmin: ["Netwerkbeheer", "Serverbeheer", "Beveiligingssystemen", "Back-up Oplossingen"],
       systems: ["Windows", "Linux", "Computerhardware & Software", "Camerasystemen"]
