@@ -332,9 +332,7 @@ function ResumeContent() {
 
             {/* Footer */}
             <div className="text-center mt-12 md:mt-16 pt-6 md:pt-8 border-t border-white/10">
-              <p className="text-gray-500 text-sm font-light italic">
-                eenvoud behouden, één regel code tegelijk
-              </p>
+
             </div>
           </div>
         </div>
