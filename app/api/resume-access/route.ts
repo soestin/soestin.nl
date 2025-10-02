@@ -27,7 +27,9 @@ const getResumeContent = () => {
         "Beheer van servers", 
         "Installatie en onderhoud van camerasystemen",
         "Implementatie van back-up oplossingen",
-        "Computerbouw, -beheer en -verkoop"
+        "Computerbouw, -beheer en -verkoop",
+        "Vraagbaak voor klanten",
+        "Offertes en Facturen maken"
       ]
     }],
     competencies: ["Probleemoplossend denken", "Zelfstandig werken", "Proactieve benadering", "Netwerkbeheer", "Datacommunicatie", "Beveiligingssystemen"],
