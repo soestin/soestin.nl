@@ -12,7 +12,7 @@ const getResumeContent = () => {
       address: "Leemringweg 22, 8317RE Kraggenburg",
       driversLicense: "Geen"
     },
-    about: "Al sinds kinds af aan ben ik geïnteresseerd in alles rondom IT. Het begon gewoon simpel met het uit elkaar halen van apparaten en kijken hoe ze werkten. Langzamerhand ben ik het IT-gedeelte heel leuk gaan vinden en ben ik mij ook vooral op dat gaan focussen. Ik heb daarom al op jonge leeftijd veel kennis en passie over en voor alles rondom systeembeheer.",
+    about: "Mijn interesse in IT is al op jonge leeftijd ontstaan. Wat begon met het uit elkaar halen van apparaten, heeft zich ontwikkeld tot een passie voor alles wat met IT te maken heeft. In de loop der jaren is mijn focus steeds meer komen te liggen op de IT-kant. Met een sterke basis in systeembeheer heb ik in mei 2025 de stap gezet om mijn eigen bedrijfje te starten, waarmee ik IT-oplossingen aanbied aan particulieren en kleine bedrijven.",
     skills: {
       systemAdmin: ["Netwerkbeheer", "Serverbeheer", "Beveiligingssystemen", "Back-up Oplossingen"],
       systems: ["Windows", "Linux", "Computerhardware & Software", "Camerasystemen"]
